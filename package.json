@@ -1,0 +1,21 @@
+{
+  "name": "product-list-with-cart-main",
+  "version": "1.0.0",
+  "description": "![Design preview for the Product list with cart coding challenge](./preview.jpg)",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-css": "npx tailwindcss -i ./styles.css -o ./stylesout.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moisesferreira123/product-list-with-cart-main.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/moisesferreira123/product-list-with-cart-main/issues"
+  },
+  "homepage": "https://github.com/moisesferreira123/product-list-with-cart-main#readme"
+}
