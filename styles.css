@@ -10,3 +10,12 @@
   --rose500: hsl(12, 20%, 44%);
   --rose900: hsl(14, 65%, 9%);
 }
+
+.icon:hover {
+  fill: var(--rose100);
+  color: var(--red);
+}
+
+.icon:hover circle {
+  stroke: var(--rose100);
+}
