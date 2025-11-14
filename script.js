@@ -79,7 +79,7 @@ function showYourCart() {
               </div>
             </div>
           </div>
-          <button class="text-(--rose300) hover:text-(--rose900) hover:cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-x-icon lucide-circle-x"><circle cx="12" cy="12" r="7"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg></button>
+          <button id="dessert-cart-${dessertId}" class="remove-dessert text-(--rose300) hover:text-(--rose900) hover:cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-x-icon lucide-circle-x"><circle cx="12" cy="12" r="7"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg></button>
         </div>
         <div class="border-t border-(--rose100)"></div>
       `;
@@ -139,6 +139,22 @@ gridDesserts.addEventListener('click', event => {
     qtdCart++;
     cart[dessertId]++;
     gridButton.outerHTML = buttonProductAddedToCart(cart[dessertId]);
+    showYourCart();
+  }
+});
+
+// TODO: Ajeitar bug nos desserts ao apagar sobremesa do carrinho
+yourCart.addEventListener('click', event => {
+  const button = event.target.closest('button');
+  if(!button) return;
+
+  const removeDessertButton = button.closest('.remove-dessert');
+  if(removeDessertButton) {
+    const dessertCartId = removeDessertButton.id.split('-')[2];
+    qtdCart -= cart[dessertCartId];
+    const gridButton = document.querySelector("#dessert-" + dessertCartId + " .grid-button");
+    gridButton.outerHTML = buttonAddToCard();
+    delete cart[dessertCartId];
     showYourCart();
   }
 });
