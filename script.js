@@ -34,7 +34,7 @@ function fillCatalog(desserts) {
 
 function buttonAddToCard() {
   return `
-    <button class="grid-button absolute min-w-[127px] bg-white px-4 py-2 rounded-full border border-(--rose500) text-xs text-(--rose900) font-medium top-54 -translate-y-1/2 right-1/2 translate-x-1/2 flex items-center whitespace-nowrap gap-2 hover:border-(--red) hover:cursor-pointer hover:text-(--red)">
+    <button class="grid-button absolute min-w-[127px] bg-white px-4 py-2 rounded-full border border-(--rose500) text-xs text-(--rose900) font-medium top-54 -translate-y-1/2 right-1/2 translate-x-1/2 flex items-center whitespace-nowrap gap-2 hover:border-(--red) hover:cursor-pointer hover:text-(--red) focus-visible:outline-2 focus-visible:outline-offset-0.5 focus-visible:outline-(--red)">
       <div><svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" fill="none" viewBox="0 0 21 20"><g fill="#C73B0F" clip-path="url(#a)"><path d="M6.583 18.75a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5ZM15.334 18.75a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5ZM3.446 1.752a.625.625 0 0 0-.613-.502h-2.5V2.5h1.988l2.4 11.998a.625.625 0 0 0 .612.502h11.25v-1.25H5.847l-.5-2.5h11.238a.625.625 0 0 0 .61-.49l1.417-6.385h-1.28L16.083 10H5.096l-1.65-8.248Z"/><path d="M11.584 3.75v-2.5h-1.25v2.5h-2.5V5h2.5v2.5h1.25V5h2.5V3.75h-2.5Z"/></g><defs><clipPath id="a"><path fill="#fff" d="M.333 0h20v20h-20z"/></clipPath></defs></svg></div>
       Add to Cart
     </button>
@@ -44,9 +44,9 @@ function buttonAddToCard() {
 function buttonProductAddedToCart(amountAdded) {
   return `
     <div class="grid-button absolute min-w-[127px] min-h-[38px] bg-(--red) px-4 py-2 rounded-full text-xs text-(--rose100) font-medium top-54 -translate-y-1/2 right-1/2 translate-x-1/2 flex items-center justify-between whitespace-nowrap gap-2">
-      <button class="decrease hover:cursor-pointer"><svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-minus-icon lucide-circle-minus"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/></svg></button>
+      <button class="decrease hover:cursor-pointer rounded-full focus-visible:outline-2 focus-visible:outline-offset-0.5 focus-visible:outline-(--rose900)"><svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-minus-icon lucide-circle-minus"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/></svg></button>
       ${amountAdded}
-      <button class="increase hover:cursor-pointer"><svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-plus-icon lucide-circle-plus"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg></button>          
+      <button class="increase hover:cursor-pointer rounded-full focus-visible:outline-2 focus-visible:outline-offset-0.5 focus-visible:outline-(--rose900)"><svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-plus-icon lucide-circle-plus"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg></button>          
     </div> 
   `;
 }
@@ -61,7 +61,9 @@ function priceTotal() {
 
 function startNewOrder() {
   for(const dessertId in cart) {
+    const dessertImg = document.querySelector('#dessert-' + dessertId + ' img');
     const gridButton = document.querySelector('#dessert-' + dessertId + ' .grid-button');
+    dessertImg.classList.remove('border-2', 'border-(--red)');
     gridButton.outerHTML = buttonAddToCard();
     delete cart[dessertId];
   }
@@ -91,7 +93,7 @@ function showYourCart() {
               </div>
             </div>
           </div>
-          <button id="dessert-cart-${dessertId}" class="remove-dessert text-(--rose300) hover:text-(--rose900) hover:cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-x-icon lucide-circle-x"><circle cx="12" cy="12" r="7"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg></button>
+          <button id="dessert-cart-${dessertId}" class="remove-dessert text-(--rose300) hover:text-(--rose900) hover:cursor-pointer rounded-full focus-visible:outline-2 focus-visible:outline-offset-0.5 focus-visible:outline-(--red)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-x-icon lucide-circle-x"><circle cx="8" cy="8" r="7"/><path d="m10 6 l-4 4"/><path d="m6 6 l4 4"/></svg></button>
         </div>
         <div class="border-t border-(--rose100)"></div>
       `;
@@ -111,7 +113,7 @@ function showYourCart() {
         <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" fill="none" viewBox="0 0 21 20"><path fill="#1EA575" d="M8 18.75H6.125V17.5H8V9.729L5.803 8.41l.644-1.072 2.196 1.318a1.256 1.256 0 0 1 .607 1.072V17.5A1.25 1.25 0 0 1 8 18.75Z"/><path fill="#1EA575" d="M14.25 18.75h-1.875a1.25 1.25 0 0 1-1.25-1.25v-6.875h3.75a2.498 2.498 0 0 0 2.488-2.747 2.594 2.594 0 0 0-2.622-2.253h-.99l-.11-.487C13.283 3.56 11.769 2.5 9.875 2.5a3.762 3.762 0 0 0-3.4 2.179l-.194.417-.54-.072A1.876 1.876 0 0 0 5.5 5a2.5 2.5 0 1 0 0 5v1.25a3.75 3.75 0 0 1 0-7.5h.05a5.019 5.019 0 0 1 4.325-2.5c2.3 0 4.182 1.236 4.845 3.125h.02a3.852 3.852 0 0 1 3.868 3.384 3.75 3.75 0 0 1-3.733 4.116h-2.5V17.5h1.875v1.25Z"/></svg>
         <p class="text-sm text-(--rose900)">This is a <span class="font-semibold">carbon-neutral</span> delivery</p>
       </div>
-      <button id="confirm-order" class="w-full bg-(--red) text-(--rose50) p-3.5 rounded-full text-sm font-medium hover:cursor-pointer hover:bg-(--red-dark)">Confirm Order</button>
+      <button id="confirm-order" class="w-full bg-(--red) text-(--rose50) p-3.5 rounded-full text-sm font-medium hover:cursor-pointer hover:bg-(--red-dark) focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-(--red)">Confirm Order</button>
     `;
   }
 }
@@ -158,6 +160,8 @@ gridDesserts.addEventListener('click', event => {
     qtdCart++;
     cart[dessertId] = 1;
     gridButton.outerHTML = buttonProductAddedToCart(1);
+    const img = dessert.querySelector('img');
+    img.classList.add('border-2', 'border-(--red)');
     showYourCart();
     return;
   }
@@ -168,6 +172,8 @@ gridDesserts.addEventListener('click', event => {
     if(cart[dessertId] <= 0) {
       gridButton.outerHTML = buttonAddToCard();
       delete cart[dessertId];
+      const img = dessert.querySelector('img');
+      img.classList.remove('border-2', 'border-(--red)');
       showYourCart();
       return;
     }
@@ -192,6 +198,8 @@ yourCart.addEventListener('click', event => {
     const dessertCartId = removeDessertButton.id.split('-')[2];
     qtdCart -= cart[dessertCartId];
     const gridButton = document.querySelector("#dessert-" + dessertCartId + " .grid-button");
+    const dessertImg = document.querySelector('#dessert-' + dessertCartId + ' img');
+    dessertImg.classList.remove('border-2', 'border-(--red)');
     gridButton.outerHTML = buttonAddToCard();
     delete cart[dessertCartId];
     showYourCart();
@@ -215,3 +223,5 @@ document.addEventListener('click', event => {
 });
 
 getData();
+
+// TODO: Fazer Medias Querie

@@ -385,9 +385,16 @@
     border-style: var(--tw-border-style);
     border-width: 1px;
   }
+  .border-2 {
+    border-style: var(--tw-border-style);
+    border-width: 2px;
+  }
   .border-t {
     border-top-style: var(--tw-border-style);
     border-top-width: 1px;
+  }
+  .border-\(--red\) {
+    border-color: var(--red);
   }
   .border-\(--rose100\) {
     border-color: var(--rose100);
@@ -421,9 +428,6 @@
   }
   .p-4 {
     padding: calc(var(--spacing) * 4);
-  }
-  .p-5 {
-    padding: calc(var(--spacing) * 5);
   }
   .p-6 {
     padding: calc(var(--spacing) * 6);
@@ -559,6 +563,48 @@
       @media (hover: hover) {
         color: var(--rose900);
       }
+    }
+  }
+  .focus\:outline-2 {
+    &:focus {
+      outline-style: var(--tw-outline-style);
+      outline-width: 2px;
+    }
+  }
+  .focus\:outline-offset-1 {
+    &:focus {
+      outline-offset: 1px;
+    }
+  }
+  .focus\:outline-\(--red\) {
+    &:focus {
+      outline-color: var(--red);
+    }
+  }
+  .focus\:outline-\(--rose900\) {
+    &:focus {
+      outline-color: var(--rose900);
+    }
+  }
+  .focus-visible\:outline-2 {
+    &:focus-visible {
+      outline-style: var(--tw-outline-style);
+      outline-width: 2px;
+    }
+  }
+  .focus-visible\:outline-offset-1 {
+    &:focus-visible {
+      outline-offset: 1px;
+    }
+  }
+  .focus-visible\:outline-\(--red\) {
+    &:focus-visible {
+      outline-color: var(--red);
+    }
+  }
+  .focus-visible\:outline-\(--rose900\) {
+    &:focus-visible {
+      outline-color: var(--rose900);
     }
   }
 }
