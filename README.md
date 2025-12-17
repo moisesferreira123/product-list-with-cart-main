@@ -43,7 +43,7 @@ Imagem do modal de confirmação de do pedido
 ### Links
 
 - Solução URL: [URL da solução](https://github.com/moisesferreira123/product-list-with-cart-main)
-- Live Site URL: [Live site URL](https://moisesferreira123.github.io/roduct-list-with-cart-main/)
+- Live Site URL: [Live site URL](https://moisesferreira123.github.io/product-list-with-cart-main/)
 
 
 ## Construído com
