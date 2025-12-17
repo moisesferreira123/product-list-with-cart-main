@@ -18,14 +18,16 @@ async function getData() {
 function fillCatalog(desserts) {
   const html = desserts.map((dessert,index) => {
     return `
-    <div id="dessert-${index}" class="dessert relative space-y-6">
-        <img src="${dessert.image.desktop}" alt="Dessert's image" class="h-54 w-60 rounded-xl shadow">
+    <div id="dessert-${index}" class="dessert relative space-y-6 w-full">
+      <div>
+        <img src="${dessert.image.desktop}" alt="Dessert's image" class="aspect-[5/3] w-full sm:h-54 rounded-xl shadow">
         ${buttonAddToCard()}
-        <div class="space-y-0.5">
-          <p class="text-xs text-(--rose400) font-medium">${dessert.category}</p>
-          <p class="text-sm text-(--rose900) font-medium">${dessert.name}</p>
-          <p class="text-base text-(--red) font-medium">$${dessert.price.toFixed(2)}</p>
-        </div>
+      </div>
+      <div class="space-y-0.5">
+        <p class="text-xs text-(--rose400) font-medium">${dessert.category}</p>
+        <p class="text-sm text-(--rose900) font-medium">${dessert.name}</p>
+        <p class="text-base text-(--red) font-medium">$${dessert.price.toFixed(2)}</p>
+      </div>
       </div>
     `;
   }).join("");
@@ -34,7 +36,7 @@ function fillCatalog(desserts) {
 
 function buttonAddToCard() {
   return `
-    <button class="grid-button absolute min-w-[127px] bg-white px-4 py-2 rounded-full border border-(--rose500) text-xs text-(--rose900) font-medium top-54 -translate-y-1/2 right-1/2 translate-x-1/2 flex items-center whitespace-nowrap gap-2 hover:border-(--red) hover:cursor-pointer hover:text-(--red) focus-visible:outline-2 focus-visible:outline-offset-0.5 focus-visible:outline-(--red)">
+    <button class="grid-button absolute min-w-[127px] bg-white px-4 py-2 rounded-full border border-(--rose500) text-xs text-(--rose900) font-medium top-[calc(height-from-aspect)] sm:top-54 -translate-y-1/2 left-1/2 -translate-x-1/2 flex items-center whitespace-nowrap gap-2 hover:border-(--red) hover:cursor-pointer hover:text-(--red) focus-visible:outline-2 focus-visible:outline-offset-0.5 focus-visible:outline-(--red)">
       <div><svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" fill="none" viewBox="0 0 21 20"><g fill="#C73B0F" clip-path="url(#a)"><path d="M6.583 18.75a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5ZM15.334 18.75a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5ZM3.446 1.752a.625.625 0 0 0-.613-.502h-2.5V2.5h1.988l2.4 11.998a.625.625 0 0 0 .612.502h11.25v-1.25H5.847l-.5-2.5h11.238a.625.625 0 0 0 .61-.49l1.417-6.385h-1.28L16.083 10H5.096l-1.65-8.248Z"/><path d="M11.584 3.75v-2.5h-1.25v2.5h-2.5V5h2.5v2.5h1.25V5h2.5V3.75h-2.5Z"/></g><defs><clipPath id="a"><path fill="#fff" d="M.333 0h20v20h-20z"/></clipPath></defs></svg></div>
       Add to Cart
     </button>
@@ -43,7 +45,7 @@ function buttonAddToCard() {
 
 function buttonProductAddedToCart(amountAdded) {
   return `
-    <div class="grid-button absolute min-w-[127px] min-h-[38px] bg-(--red) px-4 py-2 rounded-full text-xs text-(--rose100) font-medium top-54 -translate-y-1/2 right-1/2 translate-x-1/2 flex items-center justify-between whitespace-nowrap gap-2">
+    <div class="grid-button absolute min-w-[127px] min-h-[38px] bg-(--red) px-4 py-2 rounded-full text-xs text-(--rose100) font-medium sm:top-54 -translate-y-1/2 right-1/2 translate-x-1/2 flex items-center justify-between whitespace-nowrap gap-2">
       <button class="decrease hover:cursor-pointer rounded-full focus-visible:outline-2 focus-visible:outline-offset-0.5 focus-visible:outline-(--rose900)"><svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-minus-icon lucide-circle-minus"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/></svg></button>
       ${amountAdded}
       <button class="increase hover:cursor-pointer rounded-full focus-visible:outline-2 focus-visible:outline-offset-0.5 focus-visible:outline-(--rose900)"><svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-plus-icon lucide-circle-plus"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg></button>          
@@ -209,6 +211,8 @@ yourCart.addEventListener('click', event => {
   if(confirmOrderButton) {
     overlay.classList.remove('hidden');
     overlay.classList.add('flex');
+    const fatherOverlay = document.querySelector("body");
+    fatherOverlay.classList.add('overflow-hidden');
     addCartInOrderConfirmed();
   }
 });
@@ -218,10 +222,12 @@ document.addEventListener('click', event => {
   if(startNewOrderButton) {
     overlay.classList.remove('flex');
     overlay.classList.add('hidden');
+    const fatherOverlay = document.querySelector("body");
+    fatherOverlay.classList.remove('overflow-hidden');
     startNewOrder();
   }
 });
 
 getData();
 
-// TODO: Fazer Medias Querie
+// TODO: Fazer Medias Querie 
